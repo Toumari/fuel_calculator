@@ -67,15 +67,16 @@ class _MainFuelPageState extends State<MainFuelPage> {
     double sum = 0;
 
     for (int i = 0; i < records.length; i++) {
-      results
-          .add(((records[i].milesTravelled / records[i].litresOfFuel)) * 4.544);
+      results.add((records[i].milesTravelled.toDouble() /
+              records[i].litresOfFuel.toDouble()) *
+          4.544);
     }
 
     for (var i = 0; i < results.length; i++) {
-      sum += results[i];
+      sum += results[i].toDouble();
     }
 
-    return (sum / results.length);
+    return (sum / results.length.toDouble());
   }
 
   @override
