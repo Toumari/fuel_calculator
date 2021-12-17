@@ -51,6 +51,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
   String milesTravelled = "";
   int fuelentries = 0;
   double averageMPGOverview = 0;
+  double avgNumber = 0.0;
   TextEditingController fuelPriceController = TextEditingController();
   TextEditingController milesTravelledController = TextEditingController();
 
@@ -60,7 +61,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
     });
   }
 
-  double averageNumber() {
+  averageNumber() {
     List<double> results = [];
 
     double sum = 0;
@@ -206,16 +207,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
 
                     ? print("failed")
                     : setState(() {
-                        records.add(
-                          FuelRecord(
-                              litresOfFuel:
-                                  double.tryParse(fuelPriceController.text)!,
-                              milesTravelled: double.tryParse(
-                                  milesTravelledController.text)!,
-                              dateAdded: DateTime.now()),
-                        );
                         _addToBox(records);
-
                         entryNumber();
                       });
               },
@@ -233,11 +225,27 @@ class _MainFuelPageState extends State<MainFuelPage> {
   }
 
   void _addToBox(List<FuelRecord> record) async {
-    box.put('fuelRecord', record);
+    setState(() {
+      records.add(
+        FuelRecord(
+            litresOfFuel: double.tryParse(fuelPriceController.text)!,
+            milesTravelled: double.tryParse(milesTravelledController.text)!,
+            dateAdded: DateTime.now()),
+      );
+    });
+
+    box.put('fuelRecord', records);
     print(box.valuesBetween());
   }
 
   void deleteFromBox(int index) async {
+    records.removeAt(index);
+    setState(() {
+      fuelentries = records.length;
+      averageNumber();
+    });
+    box.put('fuelRecord', records);
+    print(records);
     print("deleting!");
   }
 }
