@@ -204,13 +204,13 @@ class _MainFuelPageState extends State<MainFuelPage> {
                     // ignore: avoid_print
                     ? showDialog(
                         context: context,
-                        builder: (BuildContext context) => new AlertDialog(
-                              title: new Text('Failed to add record'),
-                              content:
-                                  new Text('Please add vaules to both fields'),
+                        builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Failed to add record'),
+                              content: const Text(
+                                  'Please add vaules to both fields'),
                               actions: <Widget>[
-                                new IconButton(
-                                    icon: new Icon(Icons.close),
+                                IconButton(
+                                    icon: const Icon(Icons.close),
                                     onPressed: () {
                                       Navigator.pop(context);
                                     })
