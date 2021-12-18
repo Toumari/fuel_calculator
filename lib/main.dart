@@ -90,6 +90,11 @@ class _MainFuelPageState extends State<MainFuelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('MPG Calculator'),
+          backgroundColor: Colors.teal,
+          centerTitle: true,
+        ),
         resizeToAvoidBottomInset: false,
         body: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -99,28 +104,6 @@ class _MainFuelPageState extends State<MainFuelPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 32.0),
-                    child: Text(
-                      'MPG Calculator',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
-                    ),
-                  ),
-                  const Divider(
-                    color: Colors.teal,
-                    thickness: 0.9,
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Text(
-                    'Overview',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 17,
-                  ),
                   OverviewPanel(
                       fuelEntries:
                           fuelentries.toInt() > 0 ? fuelentries.toInt() : 0,
@@ -132,20 +115,24 @@ class _MainFuelPageState extends State<MainFuelPage> {
                   const SizedBox(height: 25),
                   Container(
                     color: Colors.grey.shade200,
-                    child: SizedBox(
-                      height: 300,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: records.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return DataEntryTile(
-                            records: records,
-                            index: index,
-                            function: () {
-                              deleteFromBox(index);
-                            },
-                          );
-                        },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 300,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          reverse: true,
+                          itemCount: records.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return DataEntryTile(
+                              records: records,
+                              index: index,
+                              function: () {
+                                deleteFromBox(index);
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
