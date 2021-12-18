@@ -37,10 +37,6 @@ class _MainFuelPageState extends State<MainFuelPage> {
   late final Box box;
 
   List<FuelRecord> loadRecords() {
-    // List<FuelRecord> records = [
-    //FuelRecord(
-    // litresOfFuel: 10.0, milesTravelled: 10.0, dateAdded: DateTime.now())
-    //];
     List<FuelRecord> records = List<FuelRecord>.from(box.get('fuelRecord'));
     return records;
   }
@@ -76,7 +72,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
       sum += results[i].toDouble();
     }
 
-    return (sum / results.length.toDouble());
+    return (results.isNotEmpty ? sum / results.length.toDouble() : 0.0);
   }
 
   @override
@@ -84,7 +80,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
     super.initState();
     fuelentries = records.length;
     box = Hive.box('fuelRecords');
-    records = loadRecords();
+    records = records.isEmpty ? loadRecords() : records = [];
     fuelentries = loadRecords().length;
   }
 
@@ -123,7 +119,8 @@ class _MainFuelPageState extends State<MainFuelPage> {
                     height: 17,
                   ),
                   OverviewPanel(
-                      fuelEntries: fuelentries.toInt(),
+                      fuelEntries:
+                          fuelentries.toInt() > 0 ? fuelentries.toInt() : 0,
                       averageMPG: averageNumber().toStringAsFixed(2)),
                   const SizedBox(
                     height: 25,
