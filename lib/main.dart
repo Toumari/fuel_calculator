@@ -202,8 +202,21 @@ class _MainFuelPageState extends State<MainFuelPage> {
 
                 milesTravelled.isEmpty || fuelAdded.isEmpty
                     // ignore: avoid_print
-                    ? print(
-                        "failed") // Need to implement failed route / dialog alert box for this
+                    ? showDialog(
+                        context: context,
+                        builder: (BuildContext context) => new AlertDialog(
+                              title: new Text('Failed to add record'),
+                              content:
+                                  new Text('Please add vaules to both fields'),
+                              actions: <Widget>[
+                                new IconButton(
+                                    icon: new Icon(Icons.close),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    })
+                              ],
+                            ))
+                    // Need to implement failed route / dialog alert box for this
                     : setState(() {
                         _addToBox(records);
                         entryNumber();
@@ -231,6 +244,9 @@ class _MainFuelPageState extends State<MainFuelPage> {
             dateAdded: DateTime.now()),
       );
     });
+
+    fuelPriceController.clear();
+    milesTravelledController.clear();
 
     // adds to the Hive Box once record has been added to non permanent list
     box.put('fuelRecord', records);
