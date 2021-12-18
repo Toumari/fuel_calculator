@@ -1,9 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../model/fuel_record.dart';
-import 'package:fuel_calculator/main.dart' as main_Page;
 
 class DataEntryTile extends StatelessWidget {
   const DataEntryTile(
