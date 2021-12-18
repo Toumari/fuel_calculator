@@ -37,7 +37,10 @@ class _MainFuelPageState extends State<MainFuelPage> {
   late final Box box;
 
   List<FuelRecord> loadRecords() {
-    List<FuelRecord> records = List<FuelRecord>.from(box.get('fuelRecord'));
+    records = List<FuelRecord>.from(box.get('fuelRecord') == null
+        ? []
+        : List<FuelRecord>.from(box.get('fuelRecord')));
+
     return records;
   }
 
@@ -80,7 +83,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
     super.initState();
     fuelentries = records.length;
     box = Hive.box('fuelRecords');
-    records = records.isEmpty ? loadRecords() : records = [];
+    records = loadRecords();
     fuelentries = loadRecords().length;
   }
 
