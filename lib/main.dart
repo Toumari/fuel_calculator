@@ -202,8 +202,8 @@ class _MainFuelPageState extends State<MainFuelPage> {
 
                 milesTravelled.isEmpty || fuelAdded.isEmpty
                     // ignore: avoid_print
-
-                    ? print("failed")
+                    ? print(
+                        "failed") // Need to implement failed route / dialog alert box for this
                     : setState(() {
                         _addToBox(records);
                         entryNumber();
@@ -232,18 +232,18 @@ class _MainFuelPageState extends State<MainFuelPage> {
       );
     });
 
+    // adds to the Hive Box once record has been added to non permanent list
     box.put('fuelRecord', records);
-    print(box.valuesBetween());
   }
 
   void deleteFromBox(int index) async {
     records.removeAt(index);
     setState(() {
       fuelentries = records.length;
+      // Sets the fuel entries value in the overview panel to the latest total
       averageNumber();
     });
     box.put('fuelRecord', records);
-    print(records);
-    print("deleting!");
+    // Updates the fuelRecord list upon deleting from the non-permanent Records List
   }
 }
