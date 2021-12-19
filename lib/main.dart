@@ -116,20 +116,46 @@ class _MainFuelPageState extends State<MainFuelPage> {
                   Container(
                     color: Colors.grey.shade200,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: SizedBox(
                         height: 300,
                         child: ListView.builder(
                           shrinkWrap: true,
-                          reverse: true,
                           itemCount: records.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return DataEntryTile(
-                              records: records,
-                              index: index,
-                              function: () {
+                            return Dismissible(
+                              direction: DismissDirection.endToStart,
+                              onDismissed: (direction) {
                                 deleteFromBox(index);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('item deleted')));
                               },
+                              key: Key(records[index].toString()),
+                              background: Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: const [
+                                    Icon(
+                                      Icons.delete_forever,
+                                      color: Colors.white,
+                                      size: 40.0,
+                                    ),
+                                    Text(
+                                      'Delete',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 24.0),
+                                    )
+                                  ],
+                                ),
+                                color: Colors.red,
+                              ),
+                              child: DataEntryTile(
+                                records: records,
+                                index: index,
+                              ),
                             );
                           },
                         ),

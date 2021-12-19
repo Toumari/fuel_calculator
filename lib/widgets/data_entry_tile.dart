@@ -3,16 +3,14 @@ import 'package:intl/intl.dart';
 import '../model/fuel_record.dart';
 
 class DataEntryTile extends StatelessWidget {
-  const DataEntryTile(
-      {Key? key,
-      required this.records,
-      required this.index,
-      required this.function})
-      : super(key: key);
+  const DataEntryTile({
+    Key? key,
+    required this.records,
+    required this.index,
+  }) : super(key: key);
 
   final List<FuelRecord> records;
   final int index;
-  final VoidCallback function;
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +41,10 @@ class DataEntryTile extends StatelessWidget {
                           4.544)
                       .toStringAsFixed(2),
                   style: const TextStyle(
-                      fontSize: 32, fontWeight: FontWeight.bold),
+                      fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const Text('MPG'),
               ],
-            ),
-            GestureDetector(
-              onLongPress: () async {
-                function();
-              },
-              child: const Icon(
-                Icons.delete_forever,
-                color: Colors.red,
-                size: 28,
-              ),
             ),
           ],
         ),
