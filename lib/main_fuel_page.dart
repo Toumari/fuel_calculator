@@ -111,7 +111,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
                                     const SnackBar(
                                         content: Text('item deleted')));
                               },
-                              key: Key(records[index].toString()),
+                              key: UniqueKey(),
                               background: Container(
                                 child: Row(
                                   mainAxisAlignment:
@@ -153,10 +153,14 @@ class _MainFuelPageState extends State<MainFuelPage> {
   // ignore: non_constant_identifier_names
   Column DataEntry() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
           "Add Fuel Purchase",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(
           height: 40,
