@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_calculator/widgets/data_entry_tile.dart';
+import 'package:fuel_calculator/widgets/drawer_widget.dart';
 import 'package:fuel_calculator/widgets/overview_panel.dart';
 import 'package:hive/hive.dart';
 import 'model/fuel_record.dart';
@@ -70,6 +71,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: DrawerWidget(),
         appBar: AppBar(
           title: const Text('MPG Calculator'),
           backgroundColor: Colors.teal,
