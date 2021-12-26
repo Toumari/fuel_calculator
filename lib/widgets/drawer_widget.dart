@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -7,6 +8,17 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const url =
+        "https://github.com/Toumari/privacy_policy_site/blob/main/MPG_Calculator_privacy_policy";
+
+    launchURL(String url) async {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     return Drawer(
       backgroundColor: Colors.grey.shade200,
       child: Padding(
@@ -36,18 +48,24 @@ class DrawerWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'About this App',
                     style:
                         TextStyle(fontWeight: FontWeight.w600, fontSize: 20.0),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
-                  Text('Privacy Policy',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 20.0))
+                  GestureDetector(
+                    onTap: () {
+                      print("test");
+                      launchURL(url);
+                    },
+                    child: const Text('Privacy Policy',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 20.0)),
+                  )
                 ],
               ),
             )
