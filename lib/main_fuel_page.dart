@@ -71,7 +71,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: DrawerWidget(),
+        drawer: const DrawerWidget(),
         appBar: AppBar(
           title: const Text('MPG Calculator'),
           backgroundColor: Colors.teal,

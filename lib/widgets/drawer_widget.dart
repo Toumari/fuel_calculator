@@ -14,23 +14,22 @@ class DrawerWidget extends StatelessWidget {
         child: ListView(
           children: [
             // ignore: prefer_const_constructors
-            Container(
+            SizedBox(
               height: 80,
-              child: DrawerHeader(
+              child: const DrawerHeader(
                 // ignore: unnecessary_const
                 // ignore: prefer_const_constructors
                 child: Text(
                   'Menu',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 32.0),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),
                 ),
               ),
             ),
-            Divider(
+            const Divider(
               color: Colors.teal,
               thickness: 0.8,
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Padding(
