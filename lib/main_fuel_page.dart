@@ -93,7 +93,33 @@ class _MainFuelPageState extends State<MainFuelPage> {
                   const SizedBox(
                     height: 25,
                   ),
-                  DataEntry(),
+                  Center(
+                    child: const Text(
+                      "Add Fuel Purchase",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Card(
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.white70, width: 1),
+                          borderRadius: BorderRadius.circular(6)),
+                      child: DataEntry()),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  Center(
+                    child: const Text(
+                      "Activity Log",
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                   const SizedBox(height: 25),
                   Container(
                     color: Colors.grey.shade200,
@@ -153,88 +179,83 @@ class _MainFuelPageState extends State<MainFuelPage> {
   }
 
   // ignore: non_constant_identifier_names
-  Column DataEntry() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Add Fuel Purchase",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+  Padding DataEntry() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 40,
           ),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        const Text(
-          'Fuel added to vehicle',
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-        ),
-        Center(
-            child: TextField(
-          controller: fuelPriceController,
-          maxLength: 4,
-          keyboardType: TextInputType.number,
-          style: const TextStyle(fontSize: 16),
-        )),
-        const Text(
-          'Miles Travelled',
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-        ),
-        Center(
-            child: TextField(
-          controller: milesTravelledController,
-          maxLength: 4,
-          keyboardType: TextInputType.number,
-          style: const TextStyle(fontSize: 20),
-        )),
-        const SizedBox(
-          height: 5,
-        ),
-        SizedBox(
-          height: 50,
-          width: 150,
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Colors.teal.shade400),
-              onPressed: () {
-                setState(() {
-                  milesTravelled = milesTravelledController.text;
-                  fuelAdded = fuelPriceController.text;
-                });
+          const Text(
+            'Fuel added to vehicle',
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          ),
+          Center(
+              child: TextField(
+            controller: fuelPriceController,
+            maxLength: 4,
+            keyboardType: TextInputType.number,
+            style: const TextStyle(fontSize: 16),
+          )),
+          SizedBox(
+            height: 15,
+          ),
+          const Text(
+            'Miles Travelled',
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          ),
+          Center(
+              child: TextField(
+            controller: milesTravelledController,
+            maxLength: 4,
+            keyboardType: TextInputType.number,
+            style: const TextStyle(fontSize: 20),
+          )),
+          const SizedBox(
+            height: 5,
+          ),
+          SizedBox(
+            height: 50,
+            width: 150,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.teal.shade400),
+                onPressed: () {
+                  setState(() {
+                    milesTravelled = milesTravelledController.text;
+                    fuelAdded = fuelPriceController.text;
+                  });
 
-                milesTravelled.isEmpty || fuelAdded.isEmpty
-                    // ignore: avoid_print
-                    ? showDialog(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                              title: const Text('Failed to add record'),
-                              content: const Text(
-                                  'Please add vaules to both fields'),
-                              actions: <Widget>[
-                                IconButton(
-                                    icon: const Icon(Icons.close),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    })
-                              ],
-                            ))
-                    // Need to implement failed route / dialog alert box for this
-                    : setState(() {
-                        _addToBox(records);
-                        entryNumber();
-                      });
-              },
-              child: const Text('Add to log')),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        const Text(
-          "Activity Log",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ],
+                  milesTravelled.isEmpty || fuelAdded.isEmpty
+                      // ignore: avoid_print
+                      ? showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Failed to add record'),
+                                content: const Text(
+                                    'Please add vaules to both fields'),
+                                actions: <Widget>[
+                                  IconButton(
+                                      icon: const Icon(Icons.close),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      })
+                                ],
+                              ))
+                      // Need to implement failed route / dialog alert box for this
+                      : setState(() {
+                          _addToBox(records);
+                          entryNumber();
+                        });
+                },
+                child: const Text('Add to log')),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+        ],
+      ),
     );
   }
 

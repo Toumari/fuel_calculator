@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../pages/about_page.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -49,10 +50,18 @@ class DrawerWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'About this App',
-                    style:
-                        TextStyle(fontWeight: FontWeight.w600, fontSize: 20.0),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AboutUs()));
+                    },
+                    child: const Text(
+                      'About this App',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 20.0),
+                    ),
                   ),
                   const SizedBox(
                     height: 40,
