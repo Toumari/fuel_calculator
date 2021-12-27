@@ -107,7 +107,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
                   ),
                   Card(
                       shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.white70, width: 1),
+                          side: BorderSide(color: Colors.white60, width: 0.2),
                           borderRadius: BorderRadius.circular(6)),
                       child: DataEntry()),
                   SizedBox(
@@ -214,42 +214,45 @@ class _MainFuelPageState extends State<MainFuelPage> {
             style: const TextStyle(fontSize: 20),
           )),
           const SizedBox(
-            height: 5,
+            height: 25,
           ),
-          SizedBox(
-            height: 50,
-            width: 150,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.teal.shade400),
-                onPressed: () {
-                  setState(() {
-                    milesTravelled = milesTravelledController.text;
-                    fuelAdded = fuelPriceController.text;
-                  });
+          Center(
+            child: SizedBox(
+              height: 50,
+              width: 150,
+              child: ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(primary: Colors.teal.shade400),
+                  onPressed: () {
+                    setState(() {
+                      milesTravelled = milesTravelledController.text;
+                      fuelAdded = fuelPriceController.text;
+                    });
 
-                  milesTravelled.isEmpty || fuelAdded.isEmpty
-                      // ignore: avoid_print
-                      ? showDialog(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                                title: const Text('Failed to add record'),
-                                content: const Text(
-                                    'Please add vaules to both fields'),
-                                actions: <Widget>[
-                                  IconButton(
-                                      icon: const Icon(Icons.close),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      })
-                                ],
-                              ))
-                      // Need to implement failed route / dialog alert box for this
-                      : setState(() {
-                          _addToBox(records);
-                          entryNumber();
-                        });
-                },
-                child: const Text('Add to log')),
+                    milesTravelled.isEmpty || fuelAdded.isEmpty
+                        // ignore: avoid_print
+                        ? showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Failed to add record'),
+                                  content: const Text(
+                                      'Please add vaules to both fields'),
+                                  actions: <Widget>[
+                                    IconButton(
+                                        icon: const Icon(Icons.close),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        })
+                                  ],
+                                ))
+                        // Need to implement failed route / dialog alert box for this
+                        : setState(() {
+                            _addToBox(records);
+                            entryNumber();
+                          });
+                  },
+                  child: const Text('Add to log')),
+            ),
           ),
           const SizedBox(
             height: 40,
