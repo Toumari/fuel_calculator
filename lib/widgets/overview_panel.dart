@@ -19,6 +19,7 @@ class _OverviewPanelState extends State<OverviewPanel> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.teal,
       shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
       child: SizedBox(
         child: Padding(
@@ -32,6 +33,7 @@ class _OverviewPanelState extends State<OverviewPanel> {
                   const Text(
                     'FUEL ENTRIES',
                     style: TextStyle(
+                        color: Colors.white,
                         fontSize: 24,
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.bold),
@@ -42,7 +44,9 @@ class _OverviewPanelState extends State<OverviewPanel> {
                   Text(
                     widget.fuelEntries.toString(),
                     style: const TextStyle(
-                        fontSize: 40, fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -52,6 +56,7 @@ class _OverviewPanelState extends State<OverviewPanel> {
                   const Text(
                     'AVERAGE MPG',
                     style: TextStyle(
+                        color: Colors.white,
                         fontSize: 24,
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.bold),
@@ -62,7 +67,9 @@ class _OverviewPanelState extends State<OverviewPanel> {
                   Text(
                     widget.averageMPG.toString(),
                     style: const TextStyle(
-                        fontSize: 40, fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

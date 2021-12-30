@@ -73,8 +73,11 @@ class _MainFuelPageState extends State<MainFuelPage> {
     return Scaffold(
         drawer: const DrawerWidget(),
         appBar: AppBar(
-          title: const Text('MPG Calculator'),
-          backgroundColor: Colors.teal,
+          iconTheme: const IconThemeData(color: Colors.teal),
+          title: const Text('MPG Calculator',
+              style: TextStyle(color: Colors.black)),
+          backgroundColor: Colors.grey.shade100,
+          elevation: 1,
           centerTitle: true,
         ),
         resizeToAvoidBottomInset: false,
@@ -93,36 +96,34 @@ class _MainFuelPageState extends State<MainFuelPage> {
                   const SizedBox(
                     height: 25,
                   ),
-                  Center(
-                    child: const Text(
-                      "Add Fuel Purchase",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  const Text(
+                    "Add Fuel Purchase",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Card(
                       shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.white60, width: 0.2),
+                          side: const BorderSide(
+                              color: Colors.white60, width: 0.2),
                           borderRadius: BorderRadius.circular(6)),
                       child: DataEntry()),
-                  SizedBox(
+                  const SizedBox(
                     height: 25.0,
                   ),
-                  Center(
-                    child: const Text(
-                      "Activity Log",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
+                  const Text(
+                    "Activity Log",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 25),
                   Container(
-                    color: Colors.grey.shade200,
+                    decoration: const BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: SizedBox(
@@ -181,7 +182,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
   // ignore: non_constant_identifier_names
   Padding DataEntry() {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -199,7 +200,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
             keyboardType: TextInputType.number,
             style: const TextStyle(fontSize: 16),
           )),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           const Text(
@@ -221,8 +222,7 @@ class _MainFuelPageState extends State<MainFuelPage> {
               height: 50,
               width: 150,
               child: ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(primary: Colors.teal.shade400),
+                  style: ElevatedButton.styleFrom(primary: Colors.teal),
                   onPressed: () {
                     setState(() {
                       milesTravelled = milesTravelledController.text;
